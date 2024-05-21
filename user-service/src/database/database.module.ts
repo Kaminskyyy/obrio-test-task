@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DatabaseConfig } from 'src/config/database.config';
+import { User } from './entity/user.entity';
 
 @Module({
   imports: [
@@ -12,7 +13,7 @@ import { DatabaseConfig } from 'src/config/database.config';
 
         return {
           type: 'postgres',
-          entities: [],
+          entities: [User],
           ...options,
         };
       },
