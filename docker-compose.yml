@@ -10,7 +10,7 @@ services:
       - RABBITMQ_DEFAULT_PASS=admin
       - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-rabbit disk_free_limit 2147483648
     volumes:
-      - ./rabbitmq:/var/lib/rabbitmq
+      - ./rabbitmq-data:/var/lib/rabbitmq
     ports:
       - 15672:15672
       - 5672:5672
@@ -23,9 +23,23 @@ services:
       - POSTGRES_USER=admin
       - POSTGRES_DB=notifications-app
     volumes:
-      - notifications-pg-data:/var/lib/postgresql/data
+      - ./postgres-data:/var/lib/postgresql/data
     ports:
       - 6000:5432
+  redis:
+    image: redis/redis-stack
+    container_name: notifications-app-redis
+    restart: always
+    ports:
+      - 6379:6379
+      - 8001:8001
+    volumes:
+      - ./redis-data/dаta:/root/redis
+      - ./redis-data/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_PASSWORD=admin
+      - REDIS_PORT=6379
+      - REDIS_DATABASES=16
 
 volumes:
   notifications-pg-data:

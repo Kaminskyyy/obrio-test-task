@@ -3,11 +3,12 @@ import { AppModule } from './app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import rabbitmqConfig from './config/rabbitmq.config';
+import redisConfig from './config/redis.config';
 
 async function bootstrap() {
   const appContext = await NestFactory.createApplicationContext(
     ConfigModule.forRoot({
-      load: [rabbitmqConfig],
+      load: [rabbitmqConfig, redisConfig],
     }),
   );
   const config = appContext.get(ConfigService);
