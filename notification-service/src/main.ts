@@ -2,7 +2,10 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import rabbitmqConfig from './config/rabbitmq.config';
+import rabbitmqConfig, {
+  RABBITMQ_CONFIG_NAME,
+  RabbitMQConfig,
+} from './config/rabbitmq.config';
 import redisConfig from './config/redis.config';
 
 async function bootstrap() {
@@ -13,7 +16,7 @@ async function bootstrap() {
   );
   const config = appContext.get(ConfigService);
 
-  const { url, queue } = config.get(`rabbitmq`);
+  const { url, queue } = config.get<RabbitMQConfig>(RABBITMQ_CONFIG_NAME);
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
     AppModule,
     {
