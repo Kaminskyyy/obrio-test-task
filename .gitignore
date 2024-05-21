@@ -1,1 +1,4 @@
-/rabbitmq
+/rabbitmq-data
+/postgres-data
+/redis-data
+*.code-workspace
