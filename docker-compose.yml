@@ -2,6 +2,7 @@ version: '3.8'
 services:
   rabbitmq:
     image: rabbitmq:3-management
+    container_name: notifications-app-rabbitmq
     hostname: rabbitmq
     restart: always
     environment:
@@ -13,3 +14,18 @@ services:
     ports:
       - 15672:15672
       - 5672:5672
+  postgres:
+    image: postgres
+    container_name: notifications-app-database
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=notifications-app
+    volumes:
+      - notifications-pg-data:/var/lib/postgresql/data
+    ports:
+      - 6000:5432
+
+volumes:
+  notifications-pg-data:
