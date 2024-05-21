@@ -4,6 +4,6 @@ import { UserDto } from './dto/user.dto';
 @Injectable()
 export class AppService {
   handleNewUser(user: UserDto) {
-    console.log(`New user received:\nName: ${user.name}\nAge: ${user.age}`);
+    console.log(`New user received:`, user);
   }
 }
