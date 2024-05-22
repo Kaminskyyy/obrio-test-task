@@ -73,7 +73,7 @@ To run this project, you will need to add the following environment variables:
 |`RABBITMQ_QUEUE_NAME`| `string` | **Required**. RabbitMQ queue name|
 |`REDIS_HOST`| `string` | **Required**. Redis host|
 |`REDIS_PORT`| `number` | **Required**. Redis port|
-|`PUSH_NOTIFICATION_URL`| `string` | **Required**. Link to which push notifications will be sent. https://webhook.site/ was used to generate url. Recommended format: https://webhook.site/<some-uuid> |
+|`PUSH_NOTIFICATION_URL`| `string` | **Required**. Link to which push notifications will be sent. https://webhook.site/ was used to generate url. Recommended format: https://webhook.site/-some-uuid- |
 |`PUSH_NOTIFICATION_DELAY`| `number` | **Required**. Push notification delay in miliseconds|
 
 ## API Reference
