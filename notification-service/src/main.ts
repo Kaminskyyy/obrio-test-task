@@ -6,12 +6,12 @@ import rabbitmqConfig, {
   RABBITMQ_CONFIG_NAME,
   RabbitMQConfig,
 } from './config/rabbitmq.config';
-import redisConfig from './config/redis.config';
 
 async function bootstrap() {
   const appContext = await NestFactory.createApplicationContext(
     ConfigModule.forRoot({
-      load: [rabbitmqConfig, redisConfig],
+      envFilePath: `${process.cwd()}/env/.${process.env.NODE_ENV}.env`,
+      load: [rabbitmqConfig],
     }),
   );
   const config = appContext.get(ConfigService);
@@ -24,6 +24,9 @@ async function bootstrap() {
       options: {
         urls: [url],
         queue,
+        queueOptions: {
+          durable: true,
+        },
       },
     },
   );

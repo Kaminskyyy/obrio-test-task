@@ -6,7 +6,11 @@ import { NotificationModule } from './notification/notification.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true, load: [redisConfig] }),
+    ConfigModule.forRoot({
+      envFilePath: `${process.cwd()}/env/.${process.env.NODE_ENV}.env`,
+      isGlobal: true,
+      load: [redisConfig],
+    }),
     RedisModule,
     NotificationModule,
   ],

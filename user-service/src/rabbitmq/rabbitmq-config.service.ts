@@ -15,6 +15,9 @@ export class RabbitMQConfigService {
       options: {
         urls: [url],
         queue,
+        queueOptions: {
+          durable: true,
+        },
       },
     };
   }

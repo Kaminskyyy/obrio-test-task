@@ -19,9 +19,6 @@ export class PushNotificationService {
   }
 
   async sendNewUserNotification(user: UserDto) {
-    console.log('HERE');
-    throw '';
-
     await firstValueFrom(
       this.httpService
         .post(this.pushNotificationUrl, {
@@ -37,6 +34,6 @@ export class PushNotificationService {
   }
 
   private getGreatingsMessage(userFirstName: string): string {
-    return `Hello, ${userFirstName}!\nWelcome in our service!`;
+    return `Hello, ${userFirstName}!\nWelcome to our service!`;
   }
 }

@@ -11,6 +11,7 @@ import rabbitmqConfig from './config/rabbitmq.config';
 @Module({
   imports: [
     ConfigModule.forRoot({
+      envFilePath: `${process.cwd()}/env/.${process.env.NODE_ENV}.env`,
       isGlobal: true,
       load: [databaseConfig, rabbitmqConfig],
     }),
