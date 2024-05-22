@@ -1,22 +1,14 @@
 import { Module } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
-import { ClientsModule, Transport } from '@nestjs/microservices';
+import { RabbitmqModule } from 'src/rabbitmq/rabbitmq.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from 'src/database/entity/user.entity';
+import { UsersRepository } from './users.repository';
 
 @Module({
-  imports: [
-    ClientsModule.register([
-      {
-        name: 'NOTIFICATION_SERVICE',
-        transport: Transport.RMQ,
-        options: {
-          urls: ['amqp://:@localhost:5672'],
-          queue: 'new_users_queue',
-        },
-      },
-    ]),
-  ],
+  imports: [RabbitmqModule, TypeOrmModule.forFeature([User])],
   controllers: [UsersController],
-  providers: [UsersService],
+  providers: [UsersService, UsersRepository],
 })
 export class UsersModule {}

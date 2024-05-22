@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ClientProxyFactory } from '@nestjs/microservices';
 import { RabbitMQConfigService } from './rabbitmq-config.service';
-import { NOTIFICATION_SERVICE } from 'src/constants';
+import { NOTIFICATION_SERVICE } from 'src/rabbitmq/constants/constants';
 
 @Module({
   providers: [

@@ -12,7 +12,7 @@ export class NotificationConsumer {
   ) {}
 
   @Process(JobName.SEND_NEW_USER_NOTIFICATION)
-  async sendNewUserNotification(job: Job<UserDto>) {
+  async sendNewUserNotification(job: Job<UserDto>): Promise<void> {
     await this.pushNotificationsService.sendNewUserNotification(job.data);
   }
 }
